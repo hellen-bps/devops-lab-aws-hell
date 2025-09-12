@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>devops-lab-aws</title>
 	<meta charset="utf-8"/>
 </head>
 <body>
