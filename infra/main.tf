@@ -1,31 +1,32 @@
-//TERRAFORM
+//CRIAR AMBIENTE DO ZERO
 
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-      version = "6.12.0"
-    }
+
+
+//CREATING vpc
+resource "aws_vpc" "test" {
+  cidr_block = "10.1.0.0/16"
+}
+
+//CREATING ROUT TABLE FOR VPC
+resource "aws_route_table" "test" {
+  vpc_id = aws_vpc.test.id
+
+//ADICIONANDO ROTA À ROUT TABLE DA VPC
+//DESTINATION
+//TARGET
+  route {
+    cidr_block           = aws_vpc.test.cidr_block
+    gateway_id = "local"
   }
 }
 
-
-//PROVIDER
-
-provider "aws" {
-  region = "us-east-1"
+//CREATING SUBNET
+resource "aws_subnet" "test" {
+  cidr_block = "10.1.1.0/24"
+  vpc_id     = aws_vpc.test.id
 }
 
 
+//================================================
 
-
-//RESOURCES
-resource "aws_instance" "app_nginx"{
-    ami = 
-    instance_type
-}
-
-//OUTPUT
-output "name" {
-  value = aws_instance
-}
+//CREATING EC2
